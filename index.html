@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Path Number Calculator — Find Your Number & Its Meaning</title>
+<meta name="description" content="Calculate your Life Path Number free, using the accurate three-cycle method professional numerologists rely on. Get your number, a real in-depth reading, and answers to common questions.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Life Path Number Calculator — Find Your Number & Its Meaning">
+<meta property="og:description" content="Calculate your Life Path Number free, using the three-cycle method. Get your number and a real reading.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is a Life Path Number actually calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reduce your birth month, day, and year separately to a single digit, keeping any master number (11, 22, or 33) un-reduced if it appears at that step. Add the three resulting numbers together, then reduce that final sum the same way. This is called the three-cycle method, and it's the version most professional numerologists use, because adding every digit of the date in one long pass can create master numbers that shouldn't be there, or erase real ones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are master numbers, and why don't they get reduced?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "11, 22, and 33 are treated as amplified versions of 2, 4, and 6, carrying more intensity in both their gifts and their challenges. They're kept un-reduced because collapsing them to a single digit would erase that extra charge, though the underlying base number still matters and is usually read alongside it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my Life Path Number change over time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It's fixed by your date of birth, which doesn't change, so the number doesn't either. What can shift is which parts of its description feel most active in a given season of your life. The number describes a pattern, not a daily mood."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did I get a different number on another calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost always it's the calculation method. Sites that add every single digit of the date in one long string, instead of reducing month, day, and year separately first, can produce a different final number whenever a master number appears partway through. This calculator uses the separate-reduction method described above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my Life Path Number the same as my zodiac sign?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, they come from different systems. Your zodiac sign is based on where the sun was positioned at your birth. Your Life Path Number is based purely on the arithmetic of your birth date. Plenty of people find both descriptions ring true for different facets of their personality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a bad Life Path Number exist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No number is inherently bad. Each one pairs real strengths with a predictable shadow side, and the challenge is usually just the gift turned up too far or aimed in the wrong direction."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --ink:#11131f;
+    --ink-soft:#1b1e2e;
+    --ink-line:#2b2f44;
+    --parchment:#f4ead3;
+    --parchment-text:#2a2417;
+    --gold:#c9a227;
+    --gold-bright:#e7c766;
+    --wine:#6b2737;
+    --ash:#a9a596;
+    --ash-dim:#6f6c60;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--ash);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond',serif;
+    color:var(--parchment);
+    margin:0;
+  }
+  a{color:var(--gold-bright);}
+  :focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px;}
+
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- header ---------- */
+  .site-header{
+    padding:28px 0 18px;
+    border-bottom:1px solid var(--ink-line);
+  }
+  .site-header .wrap{display:flex; align-items:baseline; justify-content:space-between;}
+  .brand{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:1.4rem;
+    letter-spacing:.06em;
+    color:var(--gold);
+  }
+  .brand span{color:var(--parchment);}
+  .site-header nav a{
+    font-size:.85rem;
+    color:var(--ash);
+    text-decoration:none;
+    margin-left:18px;
+  }
+  .site-header nav a:hover{color:var(--gold-bright);}
+
+  /* ---------- hero / calculator ---------- */
+  .hero{padding:56px 0 40px; text-align:center; position:relative;}
+  .hero::before{
+    content:"";
+    position:absolute; inset:0; z-index:-1;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(201,162,39,.10), transparent 55%),
+      radial-gradient(ellipse at 85% 20%, rgba(107,39,55,.18), transparent 50%);
+  }
+  .eyebrow{
+    font-size:.78rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  h1{font-size:2.5rem; font-weight:600; line-height:1.15;}
+  .lede{
+    max-width:520px; margin:18px auto 36px;
+    color:var(--ash);
+    font-size:1.05rem;
+  }
+
+  form#lp-form{
+    display:flex; flex-wrap:wrap; gap:12px;
+    justify-content:center;
+    background:var(--ink-soft);
+    border:1px solid var(--ink-line);
+    padding:22px;
+    border-radius:4px;
+  }
+  .field{display:flex; flex-direction:column; text-align:left; gap:6px;}
+  .field label{font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ash-dim);}
+  .field select, .field input{
+    background:var(--ink);
+    border:1px solid var(--ink-line);
+    color:var(--parchment);
+    font-family:'Inter',sans-serif;
+    font-size:1rem;
+    padding:10px 12px;
+    border-radius:3px;
+    width:120px;
+  }
+  .field input::placeholder{color:var(--ash-dim);}
+  .field select:focus, .field input:focus{border-color:var(--gold);}
+
+  button.cta{
+    align-self:flex-end;
+    background:var(--gold);
+    color:var(--ink);
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    padding:11px 26px;
+    border-radius:3px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  button.cta:hover{background:var(--gold-bright);}
+  .form-error{color:var(--wine); background:rgba(107,39,55,.12); border:1px solid var(--wine); padding:8px 12px; border-radius:3px; font-size:.85rem; display:none; width:100%; text-align:center;}
+
+  /* ---------- ritual reveal ---------- */
+  .ritual{padding:30px 0 10px;}
+  .ritual[hidden]{display:none;}
+  .cycles{
+    display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-bottom:6px;
+  }
+  .cycle{
+    flex:1 1 160px; max-width:200px;
+    background:var(--ink-soft);
+    border:1px solid var(--ink-line);
+    border-radius:4px;
+    padding:18px 14px;
+    text-align:center;
+    opacity:0; transform:translateY(10px);
+    animation:rise .5s ease forwards;
+  }
+  .cycle:nth-child(1){animation-delay:.05s;}
+  .cycle:nth-child(2){animation-delay:.25s;}
+  .cycle:nth-child(3){animation-delay:.45s;}
+  .cycle .label{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;}
+  .cycle .source{font-size:.78rem; color:var(--ash-dim); margin-bottom:10px;}
+  .cycle .value{font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--parchment);}
+  .cycle .value.master{color:var(--wine);}
+
+  .combine-line{
+    text-align:center;
+    color:var(--ash-dim);
+    font-size:.85rem;
+    letter-spacing:.05em;
+    margin:14px 0;
+    opacity:0; animation:rise .5s ease forwards; animation-delay:.65s;
+  }
+
+  .final{
+    text-align:center;
+    opacity:0; animation:rise .6s ease forwards; animation-delay:.85s;
+    padding-bottom:10px;
+  }
+  .final .label{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;}
+  .final .number{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:5rem;
+    line-height:1;
+    color:var(--parchment);
+  }
+  .final .number.master{color:var(--gold-bright);}
+
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){
+    .cycle, .combine-line, .final{animation:none !important; opacity:1 !important; transform:none !important;}
+  }
+
+  /* ---------- reading ---------- */
+  .reading{padding:30px 0 50px;}
+  .reading[hidden]{display:none;}
+  .reading h2{font-size:1.9rem; font-weight:600; margin-bottom:6px;}
+  .reading .tagline{color:var(--gold); font-size:1rem; margin-bottom:26px; font-style:italic;}
+  .reading-body p{margin:0 0 16px;}
+  .reading-body .field-label{
+    display:block;
+    font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ash-dim); margin-bottom:6px;
+  }
+  .reading-block{margin-bottom:22px;}
+
+  /* all 11 readings exist in markup; only the active one is shown */
+  .lp-entry{display:none;}
+  .lp-entry.active{display:block;}
+
+  /* ---------- faq ---------- */
+  .faq{padding:10px 0 60px; border-top:1px solid var(--ink-line);}
+  .faq h2{font-size:1.6rem; margin:46px 0 22px;}
+  details{
+    border-bottom:1px solid var(--ink-line);
+    padding:16px 0;
+  }
+  summary{
+    cursor:pointer;
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem;
+    color:var(--parchment);
+    list-style:none;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+"; color:var(--gold); font-size:1.3rem; font-family:'Inter',sans-serif;}
+  details[open] summary::after{content:"–";}
+  details p{margin:12px 0 0; color:var(--ash); font-size:.95rem;}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--ink-line);
+    padding:26px 0 40px;
+    text-align:center;
+    font-size:.8rem;
+    color:var(--ash-dim);
+  }
+
+  @media (max-width:520px){
+    h1{font-size:2rem;}
+    .final .number{font-size:3.6rem;}
+    form#lp-form{padding:18px;}
+    .field select, .field input{width:100px;}
+    button.cta{width:100%; align-self:stretch;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">NUMEN <span>· Numerology</span></div>
+    <nav aria-label="Site">
+      <a href="#calculator">Calculator</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="calculator">
+    <div class="wrap">
+      <div class="eyebrow">Free Numerology Tool</div>
+      <h1>Find Your Life Path Number</h1>
+      <p class="lede">Enter your date of birth. We'll reduce it the way professional numerologists do — month, day, and year as three separate cycles — so no master number gets created or lost along the way.</p>
+
+      <form id="lp-form" novalidate>
+        <div class="form-error" id="lp-error">Please check your date — that day doesn't exist in that month/year.</div>
+        <div class="field">
+          <label for="lp-month">Month</label>
+          <select id="lp-month" required>
+            <option value="">—</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="lp-day">Day</label>
+          <input type="number" id="lp-day" min="1" max="31" placeholder="DD" required>
+        </div>
+        <div class="field">
+          <label for="lp-year">Year</label>
+          <input type="number" id="lp-year" min="1900" max="2026" placeholder="YYYY" required>
+        </div>
+        <button class="cta" type="submit">Reveal My Number</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="ritual" id="ritual" hidden aria-live="polite">
+    <div class="wrap">
+      <div class="cycles">
+        <div class="cycle">
+          <div class="label">Cycle I</div>
+          <div class="source">From your birth month</div>
+          <div class="value" id="cycle-month">—</div>
+        </div>
+        <div class="cycle">
+          <div class="label">Cycle II</div>
+          <div class="source">From your birth day</div>
+          <div class="value" id="cycle-day">—</div>
+        </div>
+        <div class="cycle">
+          <div class="label">Cycle III</div>
+          <div class="source">From your birth year</div>
+          <div class="value" id="cycle-year">—</div>
+        </div>
+      </div>
+      <div class="combine-line" id="combine-line">↓ the three cycles combine ↓</div>
+      <div class="final">
+        <div class="label">Your Life Path</div>
+        <div class="number" id="final-number">—</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reading" id="reading" hidden>
+    <div class="wrap">
+      <h2>Life Path <span id="reading-number"></span></h2>
+      <div class="tagline" id="reading-tagline"></div>
+      <div class="reading-body" id="reading-body">
+
+        <!-- All 11 entries live in the DOM; JS toggles .active -->
+        <article class="lp-entry" data-number="1">
+          <div class="reading-block"><span class="field-label">The gift</span><p>Independence, decisiveness, and a willingness to take the first step where no clear path exists yet. Number 1s lead by simply moving before others are ready to.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Impatience with slower processes, discomfort taking direction from others, and a self-centeredness that can creep in unchecked.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>This number thrives building something from nothing — founder energy, original creative work, any role with real autonomy. In relationships, the growth edge is consciously making room for someone else's pace, not just your own.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="2">
+          <div class="reading-block"><span class="field-label">The gift</span><p>Tact, sensitivity, and an instinct for what a room or a relationship needs before anyone says it out loud. Number 2s bring opposing people and ideas into harmony.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Over-accommodation and conflict avoidance that lets resentment build quietly under a calm surface, plus a tendency toward indecision.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Strong in mediation, counseling, and any partnership-based work. The growth edge is voicing disagreement early, while it's still small, instead of absorbing it silently.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="3">
+          <div class="reading-block"><span class="field-label">The gift</span><p>Expression and warmth — the ability to turn a feeling into words, image, or performance, and to genuinely lift the mood of a room.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Scattering energy across too many half-finished projects, and using charm to dodge depth rather than sit in it.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Suits writing, design, teaching, performance — anywhere communication is the actual product. The discipline is finishing at least one thing long after the initial spark has faded.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="4">
+          <div class="reading-block"><span class="field-label">The gift</span><p>Structure, discipline, and the patience to build things that outlast the moment — careful craft, durable systems, follow-through.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Rigidity, difficulty improvising when a plan breaks, and sometimes mistaking control for safety.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Strong in engineering, finance, and any project-based work that rewards methodical effort. The growth edge is tolerating some disorder instead of scheduling every variable out of a relationship or a plan.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="5">
+          <div class="reading-block"><span class="field-label">The gift</span><p>Adaptability and a real appetite for new experience — comfort with uncertainty that lets a 5 go where rigid people simply can't follow.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Restlessness that abandons things right as they get interesting, and a tendency to treat commitment like a cage.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Suits travel, sales, and multi-disciplinary careers with built-in variety. The growth edge is staying through the unglamorous middle of a project, or a relationship, rather than leaving at the first plateau.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="6">
+          <div class="reading-block"><span class="field-label">The gift</span><p>A strong sense of responsibility toward family and community, and a real talent for making people feel held and cared for.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Martyrdom — over-functioning for others while quietly neglecting your own needs, which can tip into control disguised as "helping."</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Strong in caregiving, education, hospitality, and community-building work. The real lesson is learning to receive help as readily as you give it.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="7">
+          <div class="reading-block"><span class="field-label">The gift</span><p>A genuine comfort with solitude that produces real depth — research, analysis, and the patience to understand what's underneath the surface.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Isolation that hardens into distrust, and overthinking that can delay action indefinitely.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Suits research, specialist technical work, and any solitary craft pursued to mastery. The growth edge is letting people in before they've "proven" themselves.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="8">
+          <div class="reading-block"><span class="field-label">The gift</span><p>A natural read on how money, systems, and authority actually work, paired with the ambition to turn a vision into scaled, tangible results.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Equating self-worth with achievement, controlling rather than empowering the people around you, and a real burnout risk.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Strong in business, management, and any high-stakes execution role. The lesson is using power to build other people up, not just structures.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="9">
+          <div class="reading-block"><span class="field-label">The gift</span><p>A wide-angle compassion — the instinct to think in terms of the collective rather than just the personal, and a knack for closing out a cycle cleanly.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>Difficulty with boundaries, martyrdom for causes rather than people, and a sense of never quite feeling finished.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Suits advocacy, the arts, and healing professions — anything in service of something larger than yourself. The growth edge is tending to your own needs without guilt.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="11">
+          <div class="reading-block"><span class="field-label">The gift</span><p>A heightened, almost amplified version of the 2's sensitivity — real intuitive or inspirational power, the kind that illuminates something for other people.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>A nervous system running at higher voltage than most: anxiety, overwhelm, and self-doubt tend to travel with this number rather than apart from it.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Does its best work mentoring, teaching, healing, or creating — anywhere insight needs a channel. Grounding practices aren't optional extras here; they're load-bearing.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="22">
+          <div class="reading-block"><span class="field-label">The gift</span><p>The 4's structural patience, combined with unusually large vision — this number builds at a scale most 4s wouldn't attempt: institutions, movements, significant lasting work.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>The gap between the vision and current resources can produce a paralysis, or self-doubt, large enough to stall the whole project.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>This number does its best work over decades, not quarters. The discipline is starting before the plan feels complete enough.</p></div>
+        </article>
+
+        <article class="lp-entry" data-number="33">
+          <div class="reading-block"><span class="field-label">The gift</span><p>The rarest master number — the 6's nurturing instinct raised to a level oriented toward many people rather than one family. A teaching or healing presence that reaches people you may never personally meet.</p></div>
+          <div class="reading-block"><span class="field-label">The shadow</span><p>The same amplification that produces the gift can produce crushing over-responsibility. Few people carry this exact combination, so its meaning is debated even among professional numerologists.</p></div>
+          <div class="reading-block"><span class="field-label">In practice</span><p>Best read alongside the reduced 6, since both perspectives matter. The work is service without self-erasure.</p></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <h2>Frequently asked questions</h2>
+
+      <details>
+        <summary>How is a Life Path Number actually calculated?</summary>
+        <p>Reduce your birth month, day, and year separately to a single digit, keeping any master number (11, 22, or 33) un-reduced if it appears at that step. Add the three resulting numbers together, then reduce that final sum the same way. This is the three-cycle method most professional numerologists use, since adding every digit of the date in one long pass can create master numbers that shouldn't be there, or erase real ones.</p>
+      </details>
+
+      <details>
+        <summary>What are master numbers, and why don't they get reduced?</summary>
+        <p>11, 22, and 33 are treated as amplified versions of 2, 4, and 6, carrying more intensity in both their gifts and their challenges. They're kept un-reduced because collapsing them to a single digit would erase that extra charge, though the underlying base number still matters and is usually read alongside it.</p>
+      </details>
+
+      <details>
+        <summary>Can my Life Path Number change over time?</summary>
+        <p>No. It's fixed by your date of birth, which doesn't change, so the number doesn't either. What can shift is which parts of its description feel most active in a given season of your life — the number describes a pattern, not a daily mood.</p>
+      </details>
+
+      <details>
+        <summary>Why did I get a different number on another calculator?</summary>
+        <p>Almost always it's the calculation method. Sites that add every single digit of the date in one long string, instead of reducing month, day, and year separately first, can produce a different final number whenever a master number appears partway through. This calculator uses the separate-reduction method described above.</p>
+      </details>
+
+      <details>
+        <summary>Is my Life Path Number the same as my zodiac sign?</summary>
+        <p>No, they come from different systems. Your zodiac sign is based on where the sun was positioned at your birth. Your Life Path Number is based purely on the arithmetic of your birth date. Plenty of people find both descriptions ring true for different facets of their personality.</p>
+      </details>
+
+      <details>
+        <summary>Does a "bad" Life Path Number exist?</summary>
+        <p>No number is inherently bad. Each one pairs real strengths with a predictable shadow side, and the challenge is usually just the gift turned up too far or aimed in the wrong direction.</p>
+      </details>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    NUMEN — calculated with the three-cycle method. For reflection, not prediction.
+  </div>
+</footer>
+
+<script>
+(function(){
+  function reduceNumber(num){
+    while(num > 9 && num !== 11 && num !== 22 && num !== 33){
+      num = String(num).split('').reduce((sum,d)=> sum + Number(d), 0);
+    }
+    return num;
+  }
+
+  function isMaster(n){ return n === 11 || n === 22 || n === 33; }
+
+  var taglines = {
+    "1":"The Initiator", "2":"The Mediator", "3":"The Expressive",
+    "4":"The Builder", "5":"The Free Mover", "6":"The Caretaker",
+    "7":"The Seeker", "8":"The Executive", "9":"The Humanitarian",
+    "11":"Master Intuitive", "22":"Master Builder", "33":"Master Teacher"
+  };
+
+  var form = document.getElementById('lp-form');
+  var errorBox = document.getElementById('lp-error');
+  var ritual = document.getElementById('ritual');
+  var reading = document.getElementById('reading');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var month = parseInt(document.getElementById('lp-month').value, 10);
+    var day = parseInt(document.getElementById('lp-day').value, 10);
+    var year = parseInt(document.getElementById('lp-year').value, 10);
+
+    var valid = month && day && year;
+    if(valid){
+      var test = new Date(year, month - 1, day);
+      if(test.getMonth() !== month - 1 || test.getDate() !== day){ valid = false; }
+    }
+
+    if(!valid){
+      errorBox.style.display = 'block';
+      ritual.hidden = true;
+      reading.hidden = true;
+      return;
+    }
+    errorBox.style.display = 'none';
+
+    var rMonth = reduceNumber(month);
+    var rDay = reduceNumber(day);
+    var rYear = reduceNumber(year);
+    var total = rMonth + rDay + rYear;
+    var final = reduceNumber(total);
+
+    // restart reveal animations
+    ritual.hidden = false;
+    ritual.querySelectorAll('.cycle, .combine-line, .final').forEach(function(el){
+      el.style.animation = 'none';
+      void el.offsetWidth; // reflow to restart animation
+      el.style.animation = '';
+    });
+
+    document.getElementById('cycle-month').textContent = rMonth;
+    document.getElementById('cycle-month').className = 'value' + (isMaster(rMonth) ? ' master' : '');
+    document.getElementById('cycle-day').textContent = rDay;
+    document.getElementById('cycle-day').className = 'value' + (isMaster(rDay) ? ' master' : '');
+    document.getElementById('cycle-year').textContent = rYear;
+    document.getElementById('cycle-year').className = 'value' + (isMaster(rYear) ? ' master' : '');
+
+    var finalEl = document.getElementById('final-number');
+    finalEl.textContent = final;
+    finalEl.className = 'number' + (isMaster(final) ? ' master' : '');
+
+    document.getElementById('reading-number').textContent = final;
+    document.getElementById('reading-tagline').textContent = taglines[String(final)] || '';
+
+    document.querySelectorAll('.lp-entry').forEach(function(entry){
+      entry.classList.toggle('active', entry.getAttribute('data-number') === String(final));
+    });
+
+    reading.hidden = false;
+
+    setTimeout(function(){
+      reading.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 900);
+  });
+})();
+</script>
+
+</body>
+</html>
